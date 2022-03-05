@@ -1,15 +1,41 @@
-
-const express = require("express");
-const PORT = 4040;
-const handleLitening= () =>console.log(`Server connect on port http://loacalhost:${PORT}`);
+import express from "express";
+import morgan from "morgan";
+import flash from "express-flash";
+import session from "express-session";
+import chatRouter from "./Router/chatRouter";
+import globalRouter from "./Router/globalRouter";
+import userRouter from "./Router/userRouter";
+import { localsMiddleware } from "./middleware";
 
 const app = express();
-const handleHome = (req,res) =>{
-    return res.send("kakao home renewal");
-}
-const handleLogin = (req,res) =>{
-    return res.send("Login Screen");
-}
-app.get("/",handleHome);
-app.get("/login",handleLogin);
-app.listen(PORT,handleLitening);
+const logger = morgan("dev");
+
+app.set("view engine","pug");
+app.set("views",process.cwd() + "/src/views")
+
+app.use(logger);
+app.use(express.urlencoded({extended: true}));
+
+app.use(
+    session({
+      secret:"Hello!",
+      resave:true,
+      saveUninitialized:true,
+  })
+  );
+app.use((req,res,next)=>{
+   req.sessionStore.all((error, sessions)=>{
+       console.log(sessions);
+       next();
+   });
+});
+
+app.use(flash());
+app.use(localsMiddleware);
+app.use("/",globalRouter);
+app.use("/users",userRouter);
+app.use("/chat",chatRouter);
+
+
+
+export default app;
