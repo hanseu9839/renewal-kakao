@@ -10,5 +10,13 @@ export const protectorMiddleware = (req,res,next) =>{
         return next();
     }else{
         req.flash("error","Log in first");
+        return res.redirect("/login");
+    }
+}
+export const homeProtectorMiddleware = (req,res,next)=>{
+    if(req.session.loggedIn){
+        return res.redirect("/");
+    }else{
+        return next();
     }
 }
