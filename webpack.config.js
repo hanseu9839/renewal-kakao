@@ -6,9 +6,10 @@ module.exports = {
     mode: 'development',
     watch: true,
     plugins: [new MiniCssExtractPlugin({
-        filename:"css/styles.css",
-    }),
+        filename: "css/style.css",
+        }),
     ],
+   
     output:{
         filename:"js/main.js",
         path: path.resolve(__dirname,"assets"),

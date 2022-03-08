@@ -1,3 +1,20 @@
-body{
-    background-color: aliceblue;
-}
+//config
+@import "./config/_reset.scss";
+@import "./config/variables.scss";
+
+//Components
+@import "./components/alt-screen-header.scss";
+@import "./components/nav-bar.scss";
+@import "./components/no-mobile.scss";
+@import "./components/screen-header.scss";
+@import "./components/icon-row.scss";
+@import "./components/badage.scss";
+@import "./components/status-bar.scss";
+@import "./components/user-component.scss";
+
+//Screens
+@import "./screens/chat.scss";
+@import "./screens/find.scss";
+@import "./screens/friends.scss";
+@import "./screens/login.scss";
+@import "./screens/more.scss";
