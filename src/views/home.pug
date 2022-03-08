@@ -1,3 +1,25 @@
 extends base
 block content
-    h1 Hi DoongTalk 
+    header.screen-header 
+        h1.screen-header__title Friends 
+        div.screen-header__icons
+            a(href="/search") 
+                i.fas.fa-search
+            a(href="/edit")
+                i.fas.fa-bars
+    main.mina-screen 
+        div.user-component
+            img.user-component__avatar.user--component__avatar--xl(src="/imgs/basic.png")
+            div.user-component__text
+                h4.user-component__title #{loggedInUser.username}
+            div.user-component-column
+        div.friends-screen__channel
+            div.freiends-screen__channel-header
+                span Channel
+                i.fas.fa-chevron-up
+            div.user-component
+                div.user-component__column
+                img.user-component__avatar.user--component__avatar--sm(src="/imgs/basic.png")
+                div.user-component__text
+                    h4.user-component__title.user-component__title--not-bold 뽀짝
+            

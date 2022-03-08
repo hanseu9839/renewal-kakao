@@ -32,6 +32,8 @@ app.use((req,res,next)=>{
 
 app.use(flash());
 app.use(localsMiddleware);
+app.use("/imgs",express.static("imgs"));
+app.use("/static",express.static("assets"));
 app.use("/",globalRouter);
 app.use("/users",userRouter);
 app.use("/chat",chatRouter);

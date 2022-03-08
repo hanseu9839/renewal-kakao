@@ -7,12 +7,10 @@ export const getLogin = (req,res) => {
 }
 export const postLogin = async(req,res) =>{
     const {username,password}= req.body;
-    console.log(password);
     const user = await User.findOne({username});
     if(!user){
         return res.status(400).render("login",{
             pageTitle:"Login",
-            siteName:"DoongTalk",
             errorMessage:"An account with this username does not exists.",
         });
     }
