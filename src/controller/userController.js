@@ -61,3 +61,13 @@ export const postJoin = async(req,res) =>{
         return res.redirect("/login");
 }
 export const handleEditUser = (req,res) => res.send("Edit User");
+
+
+export const getSearch = (req,res) => {
+    return res.render("search",{
+        pageTitle:"Search"
+    });
+}
+export const postSearch = (req,res) =>{
+    return res.render("");
+}

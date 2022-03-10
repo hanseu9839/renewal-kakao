@@ -35,7 +35,11 @@
   #login-form input::placeholder {
     color: rgba(0, 0, 0, 0.4);
   }
-  
+  .create_account {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
   #login-form input:focus {
     border-color: var(--yellow);
   }
