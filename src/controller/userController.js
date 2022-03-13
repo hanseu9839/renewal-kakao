@@ -1,10 +1,11 @@
 import bcrypt from "bcrypt";
+import session from "express-session";
 import User from "../models/User";
-export const handleHome = (req,res) => res.render("home",{siteName:"DoongTalk",
+export const handleFriend = (req,res) => res.render("home",{siteName:"DoongTalk",
 pageTitle:"Friend"});
 export const getLogin = (req,res) => {
   return res.render("login",{pageTitle:"Login",siteName:"DoongTalk"});
-}
+};
 export const postLogin = async(req,res) =>{
     const {username,password}= req.body;
     const user = await User.findOne({username});
@@ -31,7 +32,6 @@ export const getJoin = (req,res) => {
 }
 export const postJoin = async(req,res) =>{
     const {name,username,email,password,password2} = req.body;
-    console.log(name);
     const pageTitle = "Join";
         if(password !== password2){
             return res.status(400).render("join",{
@@ -58,7 +58,7 @@ export const postJoin = async(req,res) =>{
                 errorMessage: error._message,
             });
         }
-        return res.redirect("/login");
+        return res.redirect("/");
 }
 export const handleEditUser = (req,res) => res.send("Edit User");
 
@@ -67,7 +67,36 @@ export const getSearch = (req,res) => {
     return res.render("search",{
         pageTitle:"Search"
     });
-}
-export const postSearch = (req,res) =>{
-    return res.render("");
-}
+};
+export const postSearch = async(req,res) =>{
+    const {useremail} = req.body;
+    const foundUser = await User.findOne({email:useremail});
+    if(!foundUser){
+        return res.render("search",{errorMessage:"Email could not be found"});
+    }
+    return res.render("search",{foundUser});
+};
+export const plusFriend = async(req,res) =>{
+    const {body:friendUserName,
+        session:{user},
+    } = req;
+    let flag;
+    const friendUser = await User.findOne({username:friendUserName.friendUserName});
+    const friend=friendUser._id;
+    const currentUser = await User.findById(user._id);
+    for(let num=0;num<currentUser.friend.length;num++){
+        flag = currentUser.friend[num]._id.toString()===friendUser._id.toString();
+        if(flag){
+            return res.sendStatus(404);
+        }
+    } 
+    currentUser.friend.push(friend);
+    currentUser.save();
+    return res.sendStatus(201); 
+};
+
+export const logout = (req,res) => {
+    req.session=null;
+    console.log(req.session);
+    return res.redirect("/login");
+};

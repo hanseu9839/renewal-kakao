@@ -1,4 +1,17 @@
-form(method="POST")
-    input(placeholder="Enter userEmail",name="useremail", type="text",required)
-    input(type="submit",value="Search")
-    
+extends base
+block content
+    form(method="POST")
+        input(placeholder="Enter userEmail",name="useremail", type="email")
+        input(type="submit",value="Search")
+        hr
+        if foundUser
+            div.friend-componet
+                img(src=foundUser.avatarUrl)
+                span.friend-name #{foundUser.username}
+                button.friend-plus 
+                    i.fas.fa-plus
+    if errorMessage
+        span=errorMessage
+block scripts
+    if foundUser
+        script(src="/static/js/friendPlus.js") 

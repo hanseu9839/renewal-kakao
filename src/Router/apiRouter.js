@@ -1,6 +1,9 @@
 import express from "express";
-import { plusFriend } from "../controller/userController";
+import { plusFriend, getSearch } from "../controller/userController";
 const apiRouter = express.Router();
 
-apiRouter.post("/search/add",plusFriend);
+apiRouter.route("/search/add")
+         .get(getSearch)
+         .post(plusFriend);
+         
 export default apiRouter;

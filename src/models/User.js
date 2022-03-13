@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     email: {type:String, required: true, unique:true},
     avatarUrl: {type:String,default:"/imgs/basic.png"},
+    stateMessage : {type:String,},
     username: {type:String, required:true, unique:true},
     password: {type:String, required:true},
     name:{type:String, required:true},

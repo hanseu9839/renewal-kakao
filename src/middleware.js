@@ -2,7 +2,6 @@ export const localsMiddleware = (req,res,next) => {
    res.locals.loggedIn = Boolean(req.session.loggedIn);
    res.locals.siteName = "doongTalk";
    res.locals.loggedInUser = req.session.user || {};
-   console.log(res.locals.loggedInUser);
    next();
 }
 export const protectorMiddleware = (req,res,next) =>{
@@ -14,6 +13,7 @@ export const protectorMiddleware = (req,res,next) =>{
     }
 }
 export const homeProtectorMiddleware = (req,res,next)=>{
+    console.log(req.session);
     if(req.session.loggedIn){
         return res.redirect("/");
     }else{
