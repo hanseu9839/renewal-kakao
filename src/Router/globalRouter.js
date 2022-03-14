@@ -1,12 +1,12 @@
 import express from "express";
-import { handleFriend } from "../controller/userController";
+import { handleHome } from "../controller/userController";
 import { postJoin,getJoin,getLogin,postLogin,getSearch,postSearch,logout } from "../controller/userController";
 import { protectorMiddleware ,homeProtectorMiddleware } from "../middleware";
 const globalRouter = express.Router();
 
 globalRouter.route("/")
             .all(protectorMiddleware)
-            .get(handleFriend);
+            .get(handleHome);
             
 globalRouter.route("/login")
             .all(homeProtectorMiddleware)

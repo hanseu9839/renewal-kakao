@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import session from "express-session";
 import User from "../models/User";
-export const handleFriend = (req,res) => res.render("home",{siteName:"DoongTalk",
+export const handleHome = (req,res) => res.render("home",{siteName:"DoongTalk",
 pageTitle:"Friend"});
 export const getLogin = (req,res) => {
   return res.render("login",{pageTitle:"Login",siteName:"DoongTalk"});
@@ -96,7 +96,6 @@ export const plusFriend = async(req,res) =>{
 };
 
 export const logout = (req,res) => {
-    req.session=null;
-    console.log(req.session);
+    req.session.destroy();
     return res.redirect("/login");
 };
