@@ -1,3 +1,4 @@
+import multer from "multer";
 export const localsMiddleware = (req,res,next) => {
    res.locals.loggedIn = Boolean(req.session.loggedIn);
    res.locals.siteName = "doongTalk";
@@ -20,3 +21,10 @@ export const homeProtectorMiddleware = (req,res,next)=>{
         return next();
     }
 }
+
+export const avatarUpload = multer({
+    dest:"imgs/",
+limits:{
+    fileSize:3000000,
+},
+});

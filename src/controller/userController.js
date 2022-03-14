@@ -1,8 +1,15 @@
 import bcrypt from "bcrypt";
 import session from "express-session";
 import User from "../models/User";
-export const handleHome = (req,res) => res.render("home",{siteName:"DoongTalk",
-pageTitle:"Friend"});
+export const handleHome = async(req,res) => {
+    const {session:
+        {user:_id}
+    } = req;
+    const user = await User.findOne({_id}).populate("friend");
+    console.log(user);
+    return res.render("home",{siteName:"DoongTalk",
+                pageTitle:"Friend"});
+}
 export const getLogin = (req,res) => {
   return res.render("login",{pageTitle:"Login",siteName:"DoongTalk"});
 };
@@ -65,8 +72,31 @@ export const getEdit = (req,res) => {
         pageTitle:"profile-edit",
     });
 }
-export const postEdit = (req,res) =>{
-    return;
+export const postEdit = async(req,res) =>{
+    const {
+        session: {
+            user:{ _id, avatarUrl, email:sessionEmail, name:sessionName,},
+        },
+        body:{name,email,stateMessage},
+        file
+    } = req;
+   
+    if(sessionEmail!==email){
+        const foundUser = await User.findOne({email});
+        if(foundUser&&foundUser._id !== _id){
+            return res.status(400).render("edit",{
+                pageTitle: "Profile-edit",
+                errorMessage: "이미 있는 이메일입니다."
+            });
+        }
+    }
+    const updatedUser = await User.findByIdAndUpdate(_id,{
+        name:name, email:email, stateMessage:stateMessage,
+        avatarUrl: file ? file.path : avatarUrl,
+    },{new: true});
+    req.session.user = updatedUser;
+    console.log(updatedUser);
+    return res.redirect("/users/edit");
 }
 
 export const getSearch = (req,res) => {
@@ -100,10 +130,48 @@ export const plusFriend = async(req,res) =>{
     } 
     currentUser.friend.push(friend);
     currentUser.save();
+    req.session.user = currentUser;
     return res.sendStatus(201); 
 };
 
 export const logout = (req,res) => {
     req.session.destroy();
     return res.redirect("/login");
+};
+
+export const getChangePassword = (req,res)=>{
+    return res.render("users/change-password",{pageTitle:"Change Password"});
+};
+export const postChangePassword = async(req,res) =>{
+    const {
+        body:{  oldPassword,newPassword,newPasswordConfirmation},
+        session: {
+            user:{_id},
+        }
+    } = req;
+
+    const user = await User.findById(_id);
+    const ok = await bcrypt.compare(oldPassword,user.password);
+    
+    if(oldPassword === newPassword){
+        return res.status(400).render("users/change-password",{
+            pageTitle:"change-password",
+            errorMessage:"바꾸려는 비밀번호가 현재 비밀번호와 같습니다."        
+        });
+    }
+    if(!ok){
+        return res.status(400).render("users/change-password",{
+            pageTitle:"change-password",
+            errorMessage:"현재 비밀번호가 틀렸습니다."        
+        });
+    }
+    if(newPassword!==newPasswordConfirmation){
+        return res.status(400).render("users/change-password",{
+            pageTitle:"Change password",
+            errorMessage:"패스워드 두개가 일치하지 않습니다."
+        })
+    }
+    user.password=newPassword;
+    await user.save();
+    return res.redirect("/");
 };

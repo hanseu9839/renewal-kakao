@@ -12,7 +12,8 @@ block content
             div.user-component__column 
                 img.user-component__avatar.user--component__avatar--xl(src=loggedInUser.avatarUrl)
                 div.user-component__text
-                    h4.user-component__title #{loggedInUser.username}
+                    h4.user-component__title  #{loggedInUser.username}
+                    span.stateMessage #{loggedInUser.stateMessage}
             div.user-component-column
         div.friends-screen__channel
             div.freiends-screen__channel-header

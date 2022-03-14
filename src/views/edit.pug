@@ -1,9 +1,13 @@
 extends base 
 block content 
-    form#edit-profile__form(method="POST")
+    if errorMessage
+        span=errorMessage
+    form#edit-profile__form(method="POST",enctype="multipart/form-data")
         label(for="avatar") Avatar
         input(type="file",id="avatar", name="avatar", accept="image/*")
         input(placeholder="State Message",name="stateMessage",type="text")
         input(placeholder="Name", name="name", type="text", value=loggedInUser.name)
         input(placeholder="Useremail", name="email",type="email",value=loggedInUser.email)
         input(type="submit", value="Update Profile")
+        div.edit-profile__password
+            a(href="change-password") Change Password &rarr;
