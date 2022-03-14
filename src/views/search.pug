@@ -1,7 +1,7 @@
 extends base
 block content
     form(method="POST")
-        input(placeholder="Enter userEmail",name="useremail", type="email")
+        input.friend-email(placeholder="Enter userEmail",name="useremail", type="email")
         input(type="submit",value="Search")
         hr
         if foundUser

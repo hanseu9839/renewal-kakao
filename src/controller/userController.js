@@ -60,8 +60,14 @@ export const postJoin = async(req,res) =>{
         }
         return res.redirect("/");
 }
-export const handleEditUser = (req,res) => res.send("Edit User");
-
+export const getEdit = (req,res) => {
+    res.render("edit",{
+        pageTitle:"profile-edit",
+    });
+}
+export const postEdit = (req,res) =>{
+    return;
+}
 
 export const getSearch = (req,res) => {
     return res.render("search",{
@@ -80,10 +86,12 @@ export const plusFriend = async(req,res) =>{
     const {body:friendUserName,
         session:{user},
     } = req;
+    console.log(friendUserName);
     let flag;
     const friendUser = await User.findOne({username:friendUserName.friendUserName});
     const friend=friendUser._id;
     const currentUser = await User.findById(user._id);
+    console.log(friendUser);
     for(let num=0;num<currentUser.friend.length;num++){
         flag = currentUser.friend[num]._id.toString()===friendUser._id.toString();
         if(flag){

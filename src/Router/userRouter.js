@@ -1,8 +1,13 @@
 import express from "express";
-import { handleEditUser} from "../controller/userController";
+import { getEdit,postEdit} from "../controller/userController";
+import {protectorMiddleware} from "../middleware";
 const userRouter = express.Router();
 
-userRouter.get("/edit",handleEditUser);
+userRouter.route("/edit")
+          .all(protectorMiddleware)
+          .get(getEdit)
+          .post(postEdit);
+
 
             
 export default userRouter;

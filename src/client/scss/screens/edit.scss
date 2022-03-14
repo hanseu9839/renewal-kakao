@@ -1,0 +1,9 @@
+#edit-profile__form{
+    display:flex;
+    height:100vh;
+    flex-direction:column;
+    margin:0 auto;
+    width:300px;
+} #edit-profile__form input[type="submit"] {
+    background-color: yellow;
+}
