@@ -6,9 +6,9 @@ export const handleHome = async(req,res) => {
         {user:_id}
     } = req;
     const user = await User.findOne({_id}).populate("friend");
-    console.log(user);
+    const friends = user.friend;
     return res.render("home",{siteName:"DoongTalk",
-                pageTitle:"Friend"});
+                pageTitle:"Friend",friends});
 }
 export const getLogin = (req,res) => {
   return res.render("login",{pageTitle:"Login",siteName:"DoongTalk"});

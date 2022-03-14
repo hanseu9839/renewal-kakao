@@ -1,4 +1,5 @@
 extends base
+include mixins/friend
 block content
     header.screen-header 
         h1.screen-header__title Friends 
@@ -19,9 +20,5 @@ block content
             div.freiends-screen__channel-header
                 span Channel
                 i.fas.fa-chevron-up
-        div.user-component
-            div.user-component__column
-                img.user-component__avatar.user--component__avatar--xl(src="/imgs/basic.png")
-                div.user-component__text
-                    h4.user-component__title 뽀짝
-            div.user-component-column  
+        each friend in friends 
+            +friend(friend)
