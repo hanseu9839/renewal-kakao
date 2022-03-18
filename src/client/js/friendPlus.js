@@ -12,6 +12,7 @@ const handlePlus = (event)=>{
         body:JSON.stringify({friendUserName}),
     });
     friendUserName.value="";
+    window.location.href="/";
 }
 
 friendPlus.addEventListener("click",handlePlus);

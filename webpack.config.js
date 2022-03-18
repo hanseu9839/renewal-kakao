@@ -7,6 +7,7 @@ module.exports = {
     entry: {
       main: BASE_JS+"main.js",
       friendPlus : BASE_JS+"friendPlus.js",
+      chat : BASE_JS+"chat.js",
     },
     mode: 'development',
     watch: true,

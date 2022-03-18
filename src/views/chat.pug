@@ -1,0 +1,10 @@
+extends base
+
+block content 
+    div.chat 
+    form(method="POST") 
+    input(type="text",id="userMessage",name="message")
+    input(type="submit",value="send")
+block scripts
+    script(src="/socket.io/socket.io.js")
+    script(src="/static/js/chat.js") 

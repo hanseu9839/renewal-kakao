@@ -1,7 +1,9 @@
 import express from "express";
-import { handleChat} from "../controller/chatRouter";
+import { getChat} from "../controller/chatRouter";
 const chatRouter = express.Router();
 
-chatRouter.get("/:id",handleChat);
+chatRouter.root("/:id([0-9a-f]{24})")
+        .get(getChat)
+        .post(postChat);
 
 export default chatRouter;

@@ -1,2 +1,7 @@
 
-export const handleChat = (req,res) => res.send("Chat");
+export const getChat = (req,res) => {
+    res.render("chat",{pageTitle: "Chatting Room"});
+}
+export const postChat = (req,res)=>{
+    
+}
