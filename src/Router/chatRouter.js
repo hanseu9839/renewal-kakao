@@ -1,8 +1,8 @@
 import express from "express";
-import { getChat} from "../controller/chatRouter";
+import { getChat,postChat} from "../controller/chatController";
 const chatRouter = express.Router();
 
-chatRouter.root("/:id([0-9a-f]{24})")
+chatRouter.route("/:user_id([0-9a-f]{24})/:friend_id([0-9a-f]{24})")
         .get(getChat)
         .post(postChat);
 

@@ -1,10 +1,17 @@
 extends base
 
 block content 
-    div.chat 
-    form(method="POST") 
-    input(type="text",id="userMessage",name="message")
-    input(type="submit",value="send")
+
+    form(method="POST")
+        div.content 
+            input#message(type="text",name="message")
+            input#send_message(type="submit",value="send")
+        if foundRoom
+            input#room_id(type="text",name="roomID",value=foundRoom._id)
+        else if room
+            input#room_id(type="text",name="roomID",value=room._id)
+        input#user_id(type="text",name="userID",value=loggedInUser._id)
 block scripts
+    script(src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous")
     script(src="/socket.io/socket.io.js")
     script(src="/static/js/chat.js") 

@@ -11,8 +11,11 @@ import globalRouter from "./Router/globalRouter";
 import userRouter from "./Router/userRouter";
 import apiRouter from "./Router/apiRouter";
 import { localsMiddleware } from "./middleware";
+import Room from "./models/ChatRoom";
 import Socket  from "socket.io";
 import http from "http";
+import Message from "./models/message";
+
 
 
 const app = express();
@@ -52,7 +55,31 @@ app.use("/users",userRouter);
 app.use("/chat",chatRouter);
 app.use("/api",apiRouter);
 
+io.sockets.on('connection',function(socket){
+//socket에서 connection을 하면 DB의 room을 찾아준다. 그 후 room에서 stateMessage들을 다 집어넣어줌 
+//populate를 써야 하는 거같음 왜냐하면 room에서는 message들의 값을 가져와야하기 떄문임 
 
+  socket.on('join',async function(data){
+    const findRoom = await Room.findById(data.roomID).populate("message");
+    console.log(findRoom.message[0]._id);
+    for(let i=0;i<findRoom.message.length;i++){
+         const msg  = await Message.findById(findRoom.message[i]._id).populate("user");
+         io.sockets.emit('preload',msg);
+    }
+    socket.join(data.roomID);
+  });
+  socket.on('message',async function(data){
+      const message = await Message.create({
+        text:data.message,
+        user:data.userID,
+        chatRoom:data.roomID,
+      });
+      const room = await Room.findById(data.roomID);
+      room.message.push(message._id);
+      room.save();
+      io.sockets.emit('message',data);
+  });
+});
 server.listen(PORT,handleLitening);
 
 export default app;

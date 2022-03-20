@@ -1,5 +1,5 @@
 mixin friend(friend)
-    a(href=`/chat/${loggedInUser._id}`)
+    a(href=`/chat/${loggedInUser._id}/${friend._id}`)
         div.user-component
                 div.user-component__column
                     img.user-component__avatar.user--component__avatar--xl(src=friend.avatarUrl)
