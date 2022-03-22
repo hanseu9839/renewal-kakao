@@ -19,7 +19,6 @@ socket.on('preload',function(msg){
     $(output).prependTo('.content');
 });
 socket.on('message',function(msg){
-    console.log(msg);
     let output ='';
     output += '<div class="alert alert-info"><strong>';
     output += msg.user.name;
@@ -35,6 +34,17 @@ $('#send_message').click(function(){
            message:$('#message').val(),
            roomID : $('#room_id').val()
        });
-       $('message').val('');
+       $('#message').val('');
+});
+$('#message').keydown(function(key){
+    if(key.keyCode === 13){
+        console.log("enter");
+        socket.emit('message',{
+            userID : $('#user_id').val(),
+            message:$('#message').val(),
+            roomID : $('#room_id').val()
+        });
+        $('#message').val('');
+    }
 });
 });

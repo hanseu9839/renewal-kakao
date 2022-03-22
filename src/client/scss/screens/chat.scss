@@ -5,3 +5,11 @@
   border:10px;
   outline:10px;
 }
+.content{
+  overflow:auto;
+}
+#chat{
+  position: fixed;
+  bottom:30px;
+  left:150px;
+}
