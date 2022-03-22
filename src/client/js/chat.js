@@ -1,16 +1,13 @@
-$(() =>{ 
-var socket = io();
-
+$(function(){ 
+var socket = io.connect();
+const roomID = $('#room_id').val();
+    socket.emit('joinRoom',{
+        roomID
+    });
 socket.on('connect',function(){
     console.log('connection');
     console.log($('#room_id').val());
-    const roomID = $('#room_id').val();
-    socket.emit('join',{
-        roomID
-    });
-    socket.emit('connection',{
-        roomID
-    });
+    
 });
 socket.on('preload',function(msg){
     let output = '';
@@ -19,14 +16,18 @@ socket.on('preload',function(msg){
     output += '</strong> : ';
     output += msg.text;
     output += '</div>';
-    console.log(output);
     $(output).prependTo('.content');
 });
-socket.on('message',function(data){
-    let output='';
-    output += 'dic class="alert alert-info"><strong>'
-    output += data.message;
-    output += '</strong>';
+socket.on('message',function(msg){
+    console.log(msg);
+    let output ='';
+    output += '<div class="alert alert-info"><strong>';
+    output += msg.user.name;
+    output += '</strong> : ';
+    output += msg.text;
+    output += '</div>';
+    console.log(output);
+    $(output).prependTo('.content');
 });
 $('#send_message').click(function(){
        socket.emit('message',{
