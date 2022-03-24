@@ -2,14 +2,31 @@
   display:none;
 }
 #send_message{
+  background-color: none;
   border:10px;
   outline:10px;
 }
 .content{
   overflow:auto;
+} 
+#user_img{
+  width:50px;
+  height:50px;
 }
 #chat{
   position: fixed;
   bottom:30px;
   left:150px;
+}
+#chatting_message{
+  background-color: yellow;
+  width:auto;
+  border-radius: 80%;
+}
+.hidden{
+  display: none;
+}
+.friend-message{
+  margin-left:10px;
+  margin-top: 0px;
 }

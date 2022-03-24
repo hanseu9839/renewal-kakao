@@ -1,0 +1,6 @@
+extends base
+include mixins/room
+block content
+    each room in rooms
+        +room(room)
+        

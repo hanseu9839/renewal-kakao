@@ -1,4 +1,5 @@
 import Room from "../models/ChatRoom";
+import User from "../models/User";
 
 export const getChat = async(req,res) => {
     const {user_id,friend_id} = req.params;
@@ -20,4 +21,12 @@ export const postChat = async(req,res)=>{
         return res.render('/',{pageTitle:"Friend"});
     }
     return res.status(200).render("chat",{pageTitle:"Chatting Room",foundRoom});
+};
+export const getChatRooms = async(req,res)=>{
+    const {session:
+        {user:_id}
+    }= req;
+    const rooms = await Room.find({user:_id}).populate("user").populate("message");
+    console.log(rooms[1]);
+    return res.render("rooms",{pageTitle:"Chatting Friends Room",rooms});
 }

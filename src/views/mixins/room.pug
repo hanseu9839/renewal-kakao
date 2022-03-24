@@ -1,0 +1,14 @@
+mixin room(room)
+    div.hidden
+        #{messageLen=room.message.length-1}
+    -for(let i=0;i<2;i++)
+        if(loggedInUser._id!=room.user[i]._id)
+            a(href=`/chat/${loggedInUser._id}/${room.user[i]._id}`)
+                div.user-component
+                    div.user-component__column
+                        img.user-component__avatar.user--component__avatar--xl(src="/"+room.user[i].avatarUrl)
+                        div.user-component__text
+                            h4.user-component__title #{room.user[i].username}
+                        span.friend-message=room.message[messageLen].text
+                    div.user-component-column
+            hr

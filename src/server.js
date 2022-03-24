@@ -34,9 +34,8 @@ io.sockets.on('connection',function(socket){
     socket.on('joinRoom',async function(data){
       socket.join(data.roomID);
       socket.room = data.roomID;
-      console.log(data.roomID);
       const findRoom = await Room.findById(data.roomID).populate("message");
-        for(let i=findRoom.message.length-1;i>=0;i--){
+        for(let i=0;i<findRoom.message.length;i++){
           const msg  = await Message.findById(findRoom.message[i]._id).populate("user");
           io.to(socket.id).emit('preload',msg);
         }
@@ -52,7 +51,6 @@ io.sockets.on('connection',function(socket){
         });
         console.log("dbConnection");
         const msg = await Message.findById(message._id).populate("user");
-        console.log(msg);
         const room = await Room.findById(data.roomID);
         room.message.push(message._id);
         room.save();
@@ -64,7 +62,12 @@ const handleLitening= () =>
     console.log(`Server connect on port http://loacalhost:${PORT}`); 
 app.set("view engine","pug");
 app.set("views",process.cwd() + "/src/views")
-
+app.use(express.json());
+app.use((req, res, next) => {
+    res.header("Cross-Origin-Embedder-Policy", "require-corp");
+    res.header("Cross-Origin-Opener-Policy", "same-origin");
+    next();
+  });
 app.use(logger);
 app.use(express.urlencoded({extended: true}));
 
@@ -85,12 +88,7 @@ app.use("/",globalRouter);
 app.use("/users",userRouter);
 app.use("/chat",chatRouter);
 app.use("/api",apiRouter);
-app.use(express.json());
-app.use((req, res, next) => {
-    res.header("Cross-Origin-Embedder-Policy", "require-corp");
-    res.header("Cross-Origin-Opener-Policy", "same-origin");
-    next();
-  });
+
 
 server.listen(PORT,handleLitening);
 
