@@ -9,8 +9,6 @@ module.exports = {
       friendPlus : BASE_JS+"friendPlus.js",
       chat : BASE_JS+"chat.js",
     },
-    mode: 'development',
-    watch: true,
     plugins: [new MiniCssExtractPlugin({
         filename: "css/style.css",
         }),
