@@ -23,7 +23,7 @@ const app = express();
 const logger = morgan("dev");
 const server = http.createServer(app);
 const io = Socket(server);
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 io.sockets.on('connection',function(socket){
   //socket에서 connection을 하면 DB의 room을 찾아준다. 그 후 room에서 stateMessage들을 다 집어넣어줌 
