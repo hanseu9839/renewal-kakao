@@ -4,6 +4,7 @@
   "description": "카카오톡 리뉴얼 기능입니다. 기존에 있는 카카오톡에 MongoDB, Nodejs, vaillaJS를 사용해서 기능을 추가해서 만들어 주었습니다.",
   "main": "index.js",
   "scripts": {
+    "build:server":"babel src -d build",
     "dev:server": "nodemon",
     "dev:assets": "webpack"
   },
@@ -34,7 +35,8 @@
     "socket.io": "^4.4.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.5",
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
     "@babel/node": "^7.16.8",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",

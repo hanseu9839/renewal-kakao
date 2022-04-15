@@ -19,7 +19,7 @@ export const postLogin = async(req,res) =>{
     if(!user){
         return res.status(400).render("login",{
             pageTitle:"Login",
-            errorMessage:"An account with this username does not exists.",
+            errorMessage:"이 사용자 이름을 가진 계정이 없습니다.",
         });
     }
     const ok = await bcrypt.compare(password, user.password);
@@ -27,7 +27,7 @@ export const postLogin = async(req,res) =>{
         return res.status(400).render("login",{
             pageTitle:"Login",
             siteName:"DoongTalk",
-            ErrorMessage:"Wrong password",
+            ErrorMessage:"잘못된 패스워드입니다.",
         });
     }
     req.session.loggedIn = true;
@@ -43,13 +43,13 @@ export const postJoin = async(req,res) =>{
         if(password !== password2){
             return res.status(400).render("join",{
                 pageTitle,
-                errorMessage: "Password confirmation does not match.",     
+                errorMessage: "비밀번호 확인이 일치하지 않습니다",     
             });
         }
         const exists = await User.exists({$or:[{username},{email}]});
         if(exists){
             return res.status(400).render("join",{pageTitle,
-            errorMessage:"This username/email is already taken.",
+            errorMessage:"이 사용자 이름/이메일은 이미 사용되고 있습니다.",
         });
         }
         try{
@@ -105,10 +105,16 @@ export const getSearch = (req,res) => {
     });
 };
 export const postSearch = async(req,res) =>{
+    const {user}= req.session;
     const {useremail} = req.body;
     const foundUser = await User.findOne({email:useremail});
+    console.log(user._id);
+    console.log(foundUser._id);
+    if(user._id==foundUser._id){
+        return res.render("search",{errorMessage:"본인은 친구가 될 수 없습니다."})
+    }
     if(!foundUser){
-        return res.render("search",{errorMessage:"Email could not be found"});
+        return res.render("search",{errorMessage:"이메일을 찾을수 없습니다."});
     }
     return res.render("search",{foundUser});
 };
