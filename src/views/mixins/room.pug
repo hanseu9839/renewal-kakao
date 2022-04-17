@@ -6,7 +6,7 @@ mixin room(room)
             a(href=`/chat/${loggedInUser._id}/${room.user[i]._id}`)
                 div.user-component
                     div.user-component__column
-                        img.user-component__avatar.user--component__avatar--xl(src="/"+room.user[i].avatarUrl,crossorigin="anonymous")
+                        img.user-component__avatar.user--component__avatar--xl(src=room.user[i].avatarUrl,crossorigin="anonymous")
                         div.user-component__text
                             h4.user-component__title #{room.user[i].username}
                         span.friend-message=room.message[messageLen].text
