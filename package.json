@@ -23,6 +23,7 @@
   "homepage": "https://github.com/hanseu9839/renewal-kakao#readme",
   "dependencies": {
     "@babel/runtime": "^7.17.2",
+    "aws-sdk": "^2.1116.0",
     "bcrypt": "^5.0.1",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^4.6.0",
