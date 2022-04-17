@@ -5,6 +5,12 @@ export const localsMiddleware = (req,res,next) => {
    res.locals.loggedInUser = req.session.user || {};
    next();
 }
+const s3 = new aws.S3({
+    credentials:{
+        accessKeyId:process.env.AWS_ID,
+        secretAccessKey:process.env.AWS_SECRET
+    }
+})
 export const protectorMiddleware = (req,res,next) =>{
     if(req.session.loggedIn){
         return next();
