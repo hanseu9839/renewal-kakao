@@ -16,7 +16,7 @@ const s3 = new aws.S3({
 const isHeroku = process.env.NODE_ENV === "production";
 const s3ImageUploader = multerS3({
     s3:s3,
-    bucket : "doongtalk/images",
+    bucket : "doongtal/images",
     acl: "public-read",
 });
 
