@@ -2,7 +2,7 @@ mixin friend(friend)
     a(href=`/chat/${loggedInUser._id}/${friend._id}`)
         div.user-component
                 div.user-component__column
-                    img.user-component__avatar.user--component__avatar--xl(src=friend.avatarUrl)
+                    img.user-component__avatar.user--component__avatar--xl(src=friend.avatarUrl,crossorigin)
                     div.user-component__text
                         h4.user-component__title #{friend.username}
                         span.stateMessage #{friend.stateMessage}

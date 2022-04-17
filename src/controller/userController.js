@@ -90,9 +90,10 @@ export const postEdit = async(req,res) =>{
             });
         }
     }
+    const isHeroku = process.env.NODE_ENV === "production";
     const updatedUser = await User.findByIdAndUpdate(_id,{
         name:name, email:email, stateMessage:stateMessage,
-        avatarUrl: file ? file.path : avatarUrl,
+        avatarUrl: file ?( isHeroku ? file.location : file.path )  : avatarUrl,
     },{new: true});
     req.session.user = updatedUser;
     console.log(updatedUser);
@@ -122,7 +123,6 @@ export const plusFriend = async(req,res) =>{
     const {body:friendUserName,
         session:{user},
     } = req;
-    console.log(friendUserName);
     let flag;
     const friendUser = await User.findOne({username:friendUserName.friendUserName});
     const friend=friendUser._id;

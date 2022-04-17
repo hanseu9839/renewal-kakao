@@ -12,7 +12,14 @@ const s3 = new aws.S3({
         accessKeyId:process.env.AWS_ID,
         secretAccessKey:process.env.AWS_SECRET
     }
-})
+});
+const isHeroku = process.env.NODE_ENV === "production";
+const s3ImageUploader = multerS3({
+    s3:s3,
+    bucket : "doongtalk/images",
+    acl: "public-read",
+});
+
 export const protectorMiddleware = (req,res,next) =>{
     if(req.session.loggedIn){
         return next();
@@ -32,7 +39,8 @@ export const homeProtectorMiddleware = (req,res,next)=>{
 
 export const avatarUpload = multer({
     dest:"imgs/",
-limits:{
+    limits:{
     fileSize:3000000,
-},
+    },
+    storage:isHeroku ? s3ImageUploader : undefined,
 });
