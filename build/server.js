@@ -162,11 +162,6 @@ var handleLitening = function handleLitening() {
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use(_express["default"].json());
-app.use(function (req, res, next) {
-  res.header("Cross-Origin-Embedder-Policy", "require-corp");
-  res.header("Cross-Origin-Opener-Policy", "same-origin");
-  next();
-});
 app.use(logger);
 app.use(_express["default"].urlencoded({
   extended: true
