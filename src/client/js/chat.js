@@ -12,18 +12,19 @@ const roomID = room_id.value;
     });
 socket.on('preload',function(msg){
     const img = document.createElement("img");
-    img.src = "/"+msg.user.avatarUrl;
+    img.crossOrigin = "anonymous";
+    img.src = msg.user.avatarUrl;
     img.id = "user_img";
     const span = document.createElement("span");
     span.id = "chatting_message";
     span.innerText = `${msg.user.name} : ${msg.text}\n`; 
     content.appendChild(img);
     content.appendChild(span);
-    
 });
 socket.on('message',function(msg){
     const img = document.createElement("img");
-    img.src = "/"+msg.user.avatarUrl;
+    img.crossOrigin = "anonymous";
+    img.src = msg.user.avatarUrl;
     img.id = "user_img";
     const span = document.createElement("span");
     span.id = "chatting_message";
