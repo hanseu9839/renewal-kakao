@@ -5,6 +5,7 @@ export const localsMiddleware = (req,res,next) => {
    res.locals.loggedIn = Boolean(req.session.loggedIn);
    res.locals.siteName = "doongTalk";
    res.locals.loggedInUser = req.session.user || {};
+   res.locals.isHeroku = isHeroku;
    next();
 }
 const s3 = new aws.S3({
