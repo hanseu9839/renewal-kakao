@@ -53,7 +53,7 @@ var logger = (0, _morgan["default"])("dev");
 var server = _http["default"].createServer(app);
 
 var io = (0, _socket["default"])(server);
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 4040;
 io.sockets.on('connection', function (socket) {
   //socket에서 connection을 하면 DB의 room을 찾아준다. 그 후 room에서 stateMessage들을 다 집어넣어줌 
   //populate를 써야 하는 거같음 왜냐하면 room에서는 message들의 값을 가져와야하기 떄문임

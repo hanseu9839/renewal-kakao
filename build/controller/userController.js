@@ -232,7 +232,7 @@ exports.getEdit = getEdit;
 
 var postEdit = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res) {
-    var _req$session$user, _id, avatarUrl, sessionEmail, sessionName, _req$body3, name, email, stateMessage, file, foundUser, updatedUser;
+    var _req$session$user, _id, avatarUrl, sessionEmail, sessionName, _req$body3, name, email, stateMessage, file, foundUser, isHeroku, updatedUser;
 
     return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
@@ -264,23 +264,24 @@ var postEdit = /*#__PURE__*/function () {
             }));
 
           case 7:
-            _context4.next = 9;
+            isHeroku = process.env.NODE_ENV === "production";
+            _context4.next = 10;
             return _User["default"].findByIdAndUpdate(_id, {
               name: name,
               email: email,
               stateMessage: stateMessage,
-              avatarUrl: file ? file.path : avatarUrl
+              avatarUrl: file ? isHeroku ? file.location : file.path : avatarUrl
             }, {
               "new": true
             });
 
-          case 9:
+          case 10:
             updatedUser = _context4.sent;
             req.session.user = updatedUser;
             console.log(updatedUser);
             return _context4.abrupt("return", res.redirect("/users/edit"));
 
-          case 13:
+          case 14:
           case "end":
             return _context4.stop();
         }
@@ -369,50 +370,49 @@ var plusFriend = /*#__PURE__*/function () {
         switch (_context6.prev = _context6.next) {
           case 0:
             friendUserName = req.body, user = req.session.user;
-            console.log(friendUserName);
-            _context6.next = 4;
+            _context6.next = 3;
             return _User["default"].findOne({
               username: friendUserName.friendUserName
             });
 
-          case 4:
+          case 3:
             friendUser = _context6.sent;
             friend = friendUser._id;
-            _context6.next = 8;
+            _context6.next = 7;
             return _User["default"].findById(user._id);
 
-          case 8:
+          case 7:
             currentUser = _context6.sent;
             console.log(friendUser);
             num = 0;
 
-          case 11:
+          case 10:
             if (!(num < currentUser.friend.length)) {
-              _context6.next = 18;
+              _context6.next = 17;
               break;
             }
 
             flag = currentUser.friend[num]._id.toString() === friendUser._id.toString();
 
             if (!flag) {
-              _context6.next = 15;
+              _context6.next = 14;
               break;
             }
 
             return _context6.abrupt("return", res.sendStatus(404));
 
-          case 15:
+          case 14:
             num++;
-            _context6.next = 11;
+            _context6.next = 10;
             break;
 
-          case 18:
+          case 17:
             currentUser.friend.push(friend);
             currentUser.save();
             req.session.user = currentUser;
             return _context6.abrupt("return", res.sendStatus(201));
 
-          case 22:
+          case 21:
           case "end":
             return _context6.stop();
         }
