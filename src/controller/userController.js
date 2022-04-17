@@ -5,6 +5,7 @@ export const handleHome = async(req,res) => {
     const {session:
         {user:_id}
     } = req;
+    res.header("Access-Control-Allow-Origin","*");
     const user = await User.findOne({_id}).populate("friend");
     const friends = user.friend;
     return res.render("home",{siteName:"DoongTalk",
