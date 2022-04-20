@@ -107,7 +107,7 @@ export const getSearch = (req,res) => {
     });
 };
 export const postSearch = async(req,res) =>{
-    const {user}= req.session;
+    const user= req.session.user;
     const {useremail} = req.body;
     const foundUser = await User.findOne({email:useremail});
     if(user._id==foundUser._id){
