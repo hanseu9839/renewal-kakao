@@ -6,7 +6,7 @@ block content
         hr
         if foundUser
             div.friend-componet
-                img(src=foundUser.avatarUrl)
+                img(src=foundUser.avatarUrl crossorigin="anonymous")
                 span.friend-name #{foundUser.username}
                 button.friend-plus 
                     i.fas.fa-plus
