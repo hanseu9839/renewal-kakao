@@ -23,7 +23,7 @@ var userSchema = new _mongoose["default"].Schema({
   },
   avatarUrl: {
     type: String,
-    "default": "/imgs/basic.png"
+    "default": "https://pbs.twimg.com/profile_images/1173873201039806464/R1lWiNES_400x400.jpg"
   },
   stateMessage: {
     type: String,

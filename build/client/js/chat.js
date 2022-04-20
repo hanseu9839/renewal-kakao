@@ -13,7 +13,8 @@ socket.emit('joinRoom', {
 });
 socket.on('preload', function (msg) {
   var img = document.createElement("img");
-  img.src = "/" + msg.user.avatarUrl;
+  img.crossOrigin = "anonymous";
+  img.src = msg.user.avatarUrl;
   img.id = "user_img";
   var span = document.createElement("span");
   span.id = "chatting_message";
@@ -23,7 +24,8 @@ socket.on('preload', function (msg) {
 });
 socket.on('message', function (msg) {
   var img = document.createElement("img");
-  img.src = "/" + msg.user.avatarUrl;
+  img.crossOrigin = "anonymous";
+  img.src = msg.user.avatarUrl;
   img.id = "user_img";
   var span = document.createElement("span");
   span.id = "chatting_message";

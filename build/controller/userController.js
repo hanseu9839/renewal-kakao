@@ -26,12 +26,13 @@ var handleHome = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _id = req.session.user;
-            _context.next = 3;
+            res.header("Access-Control-Allow-Origin", "*");
+            _context.next = 4;
             return _User["default"].findOne({
               _id: _id
             }).populate("friend");
 
-          case 3:
+          case 4:
             user = _context.sent;
             friends = user.friend;
             return _context.abrupt("return", res.render("home", {
@@ -40,7 +41,7 @@ var handleHome = /*#__PURE__*/function () {
               friends: friends
             }));
 
-          case 6:
+          case 7:
           case "end":
             return _context.stop();
         }
@@ -320,11 +321,9 @@ var postSearch = /*#__PURE__*/function () {
 
           case 4:
             foundUser = _context5.sent;
-            console.log(user._id);
-            console.log(foundUser._id);
 
-            if (!(user._id == foundUser._id)) {
-              _context5.next = 9;
+            if (!(user._id === foundUser._id)) {
+              _context5.next = 7;
               break;
             }
 
@@ -332,9 +331,9 @@ var postSearch = /*#__PURE__*/function () {
               errorMessage: "본인은 친구가 될 수 없습니다."
             }));
 
-          case 9:
+          case 7:
             if (foundUser) {
-              _context5.next = 11;
+              _context5.next = 9;
               break;
             }
 
@@ -342,12 +341,12 @@ var postSearch = /*#__PURE__*/function () {
               errorMessage: "이메일을 찾을수 없습니다."
             }));
 
-          case 11:
+          case 9:
             return _context5.abrupt("return", res.render("search", {
               foundUser: foundUser
             }));
 
-          case 12:
+          case 10:
           case "end":
             return _context5.stop();
         }
@@ -383,36 +382,35 @@ var plusFriend = /*#__PURE__*/function () {
 
           case 7:
             currentUser = _context6.sent;
-            console.log(friendUser);
             num = 0;
 
-          case 10:
+          case 9:
             if (!(num < currentUser.friend.length)) {
-              _context6.next = 17;
+              _context6.next = 16;
               break;
             }
 
             flag = currentUser.friend[num]._id.toString() === friendUser._id.toString();
 
             if (!flag) {
-              _context6.next = 14;
+              _context6.next = 13;
               break;
             }
 
             return _context6.abrupt("return", res.sendStatus(404));
 
-          case 14:
+          case 13:
             num++;
-            _context6.next = 10;
+            _context6.next = 9;
             break;
 
-          case 17:
+          case 16:
             currentUser.friend.push(friend);
             currentUser.save();
             req.session.user = currentUser;
             return _context6.abrupt("return", res.sendStatus(201));
 
-          case 21:
+          case 20:
           case "end":
             return _context6.stop();
         }

@@ -166,6 +166,11 @@ app.use(logger);
 app.use(_express["default"].urlencoded({
   extended: true
 }));
+app.use(function (req, res, next) {
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  next();
+});
 app.use((0, _expressSession["default"])({
   secret: process.env.COOKIE_SECRET,
   resave: false,
