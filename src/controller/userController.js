@@ -107,10 +107,10 @@ export const getSearch = (req,res) => {
     });
 };
 export const postSearch = async(req,res) =>{
-    const userId= req.session.user._id;
+    const {user}= req.session;
     const {useremail} = req.body;
     const foundUser = await User.findOne({email:useremail});
-    if(userId===foundUser._id){
+    if(user._id===foundUser._id){
         return res.render("search",{errorMessage:"본인은 친구가 될 수 없습니다."})
     }
     if(!foundUser){
