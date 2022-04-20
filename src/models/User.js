@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
     email: {type:String, required: true, unique:true},
-    avatarUrl: {type:String,default:"/imgs/basic.png"},
+    avatarUrl: {type:String,default:"s3://doongtalk/img/snooze-wallpaper-2-pc.jpg"},
     stateMessage : {type:String,default:"상태 메시지 설정 안함."},
     username: {type:String, required:true, unique:true},
     password: {type:String, required:true},
