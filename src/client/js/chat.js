@@ -3,6 +3,7 @@ const room_id = document.getElementById("room_id");
 const send_message = document.getElementById("send_message");
 const message = document.getElementById("message");
 const content = document.querySelector(".content");
+
 var socket = io.connect();
 
 console.log(user_id.value);

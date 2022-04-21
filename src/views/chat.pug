@@ -3,9 +3,10 @@ extends base
 block content 
     div.scorll
         div.content 
+        div#chat-wrap
             div#chat
-                input#message(type="text",name="message")
-                <button id="send_message">send</button>
+                    input#message(type="text",name="message")
+                    <button id="send_message">send</button>
         if foundRoom
             input#room_id(type="text",name="roomID",value=foundRoom._id)
         else if room
