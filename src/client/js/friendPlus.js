@@ -1,11 +1,9 @@
-const friendName = document.querySelectorAll(".friend-name");
-const friendPlus = document.querySelectorAll(".friend-plus");
+const friendName = document.querySelector(".friend-name");
+const friendPlus = document.querySelector(".friend-plus");
 
-let i=0;
 const handlePlus = (event)=>{
     event.preventDefault();
-    const friendUserName=friendName[i].textContent;
-    i=0;
+    const friendUserName=friendName.textContent;
     console.log(friendUserName);
     fetch("/api/search/add",{
         method:"POST",
@@ -17,6 +15,5 @@ const handlePlus = (event)=>{
     friendUserName.value="";
     window.location.href="/";
 }
-for(i=0;i<friendPlus.length;i++){
-    friendPlus[i].addEventListener("click",handlePlus);
-}
+
+friendPlus.addEventListener("click",handlePlus);

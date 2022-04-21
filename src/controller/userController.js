@@ -109,11 +109,7 @@ export const getSearch = (req,res) => {
 export const postSearch = async(req,res) =>{
     const {user}= req.session;
     const {useremail} = req.body;
-    console.log(useremail);
-    const foundUser = await User.find({email: {
-            $regex:new RegExp(useremail,"i"),
-        },
-    });
+    const foundUser = await User.findOne({email:useremail});
     if(!foundUser){
         return res.render("search",{errorMessage:"이메일을 찾을수 없습니다."});
     }

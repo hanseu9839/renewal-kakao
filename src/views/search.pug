@@ -1,16 +1,15 @@
 extends base
 block content
     form(method="POST")
-        input.friend-email(placeholder="Enter userEmail",name="useremail", type="text")
+        input.friend-email(placeholder="Enter userEmail",name="useremail", type="email")
         input(type="submit",value="Search")
         hr
         if foundUser
-            -for(let i=0;i<foundUser.length;i++) 
-                div.friend-componet
-                    img(src=foundUser[i].avatarUrl crossorigin="anonymous")
-                    span.friend-name #{foundUser[i].username}
-                    button.friend-plus 
-                        i.fas.fa-plus
+            div.friend-componet
+                img(src=foundUser.avatarUrl crossorigin="anonymous")
+                span.friend-name #{foundUser.username}
+                button.friend-plus 
+                    i.fas.fa-plus
     if errorMessage
         span=errorMessage
 block scripts
