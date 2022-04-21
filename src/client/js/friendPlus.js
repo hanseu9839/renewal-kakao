@@ -13,6 +13,7 @@ const handlePlus = (event)=>{
     });
     friendUserName.value="";
     window.location.href="/";
+    window.location.reload();
 }
 
 friendPlus.addEventListener("click",handlePlus);
