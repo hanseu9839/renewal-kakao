@@ -5,6 +5,7 @@ let i=0;
 const handlePlus = (event)=>{
     event.preventDefault();
     const friendUserName=friendName[i].textContent;
+    i=0;
     console.log(friendUserName);
     fetch("/api/search/add",{
         method:"POST",
