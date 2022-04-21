@@ -3,7 +3,7 @@ extends base
 block content 
     if errorMessage 
         span=errorMessage
-    div
+    div#join-div
         form#join-form(method="POST")
             input(placeholder="Name",name="name", type="text" ,required)
             input(placeholder="Eamil",name="email", type="email", required)

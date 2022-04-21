@@ -15,6 +15,8 @@
 }
 
 .freiends-screen__channel{
+    height: 80vh;
+    overflow: auto;
     margin-top: 25px;
     border-top: var(--main-border);
     padding-top:15px;

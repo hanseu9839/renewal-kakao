@@ -1,17 +1,16 @@
 extends base
 
 block content 
-    div.scorll
-        div.content 
-        div#chat-wrap
-            div#chat
-                    input#message(type="text",name="message")
-                    <button id="send_message">send</button>
+    div.scroll
+        div.content
         if foundRoom
             input#room_id(type="text",name="roomID",value=foundRoom._id)
         else if room
             input#room_id(type="text",name="roomID",value=room._id)
         input#user_id(type="text",name="userID",value=loggedInUser._id)
+    div.chat
+        input#message(type="text",name="message")
+        button#send_message(type="button") send
 block scripts
     script(src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous")
     script(src="/socket.io/socket.io.js")

@@ -1,4 +1,4 @@
-div{
+#join-div{
     text-align: center;
 }
 #join-form{
@@ -12,12 +12,14 @@ div{
     flex-direction: column;
     margin: 0 auto;
     width:30%
-} input{
+} 
+input{
     border: none;
     padding: 15px 0px;
     font-size: 18px;
     margin-bottom: 25px;
-}input:not([type="submit"]) {
+}
+input:not([type="submit"]) {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     transition: border-color 0.3s ease-in-out;
   }

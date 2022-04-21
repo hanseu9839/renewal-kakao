@@ -3,7 +3,7 @@ const room_id = document.getElementById("room_id");
 const send_message = document.getElementById("send_message");
 const message = document.getElementById("message");
 const content = document.querySelector(".content");
-
+const scroll = document.querySelector(".scroll");
 var socket = io.connect();
 
 console.log(user_id.value);
@@ -21,6 +21,7 @@ socket.on('preload',function(msg){
     span.innerText = `${msg.user.name} : ${msg.text}\n`; 
     content.appendChild(img);
     content.appendChild(span);
+   
 });
 socket.on('message',function(msg){
     const img = document.createElement("img");
@@ -32,6 +33,7 @@ socket.on('message',function(msg){
     span.innerText = `${msg.user.name} : ${msg.text}\n`; 
     content.appendChild(img);
     content.appendChild(span);
+    scroll.scrollTop =scroll.scrollHeight;
 });
 const sending = ()=>{
     socket.emit('message',{
