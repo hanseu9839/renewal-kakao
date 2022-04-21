@@ -4,7 +4,6 @@ const friendPlus = document.querySelector(".friend-plus");
 const handlePlus = (event)=>{
     event.preventDefault();
     const friendUserName=friendName.textContent;
-    console.log(friendUserName);
     fetch("/api/search/add",{
         method:"POST",
         headers:{
