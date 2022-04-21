@@ -1,5 +1,5 @@
 const friendName = document.querySelector(".friend-name");
-const friendPlus = document.querySelector(".friend-plus");
+const friendPlus = document.querySelectorAll(".friend-plus");
 
 const handlePlus = (event)=>{
     event.preventDefault();
@@ -15,5 +15,6 @@ const handlePlus = (event)=>{
     friendUserName.value="";
     window.location.href="/";
 }
-
-friendPlus.addEventListener("click",handlePlus);
+for(let i=0;i<friendPlus.length;i++){
+    friendPlus[i].addEventListener("click",handlePlus);
+}
