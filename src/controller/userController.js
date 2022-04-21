@@ -111,7 +111,7 @@ export const postSearch = async(req,res) =>{
     const {useremail} = req.body;
     console.log(useremail);
     const foundUser = await User.find({email: {
-        $regex:new RegExp(useremail,"i"),
+            $regex:new RegExp(useremail,"i"),
         },
     });
     if(!foundUser){
