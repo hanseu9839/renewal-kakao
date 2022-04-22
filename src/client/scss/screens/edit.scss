@@ -5,5 +5,14 @@
     margin:0 auto;
     width:300px;
 } #edit-profile__form input[type="submit"] {
-    background-color: yellow;
+    background-color: white;
+}
+#edit-profile__form input{
+    border: none;
+    padding: 15px 0px;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+.edit-ahref{
+    font-size:25px;
 }

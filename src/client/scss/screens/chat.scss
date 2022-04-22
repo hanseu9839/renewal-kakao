@@ -2,7 +2,6 @@
   display:none;
 }
 #send_message{
-  background-color: none;
   border:10px;
   outline:10px;
 }
@@ -17,10 +16,16 @@
   width:50px;
   height:50px;
 }
+#chatting_message{
+  font-size:25px;
+}
 .chat {
   width:100%;
   margin-bottom:50px;
   display: flex;
+}
+.chat input{
+  padding: 16px 0px;
 }
 input#message{
   border-left-width:0;
@@ -28,12 +33,8 @@ input#message{
   border-top-width:0;
   border-bottom-width:1;
   width:100%;
-  background-color: orange;
 }
-
-
 #chatting_message{
-  background-color: yellow;
   width:auto;
   border-radius: 80%;
 }

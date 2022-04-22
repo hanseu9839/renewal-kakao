@@ -1,6 +1,7 @@
 extends base
 
 block content 
+    div.screen-top__header
     if errorMessage
         span=errorMessage
     form#login-form(method="POST")
@@ -10,5 +11,5 @@ block content
     hr
     div.create_account
         span.question 계정이 없으십니까? 
-        a(href="/join") &rarr; 계정 생성하기 
-    
+        a(href="/join")  계정 생성하기 
+    img.weclome-img(src="imgs/welcome.jpeg")
