@@ -2,5 +2,8 @@ extends base
 include mixins/room
 block content
     each room in rooms
-        +room(room)
+        if(room)
+            +room(room)
+        else 
+            span 채팅방 없음 
         
