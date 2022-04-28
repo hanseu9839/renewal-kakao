@@ -97,3 +97,18 @@ Tools : VS Code <br>
 - Room테이블을 만들어 준 이유는 각각의 ID를 저장하여 하나의 데이터베이스로 만들어야 한다는 생각에 테이블을 만들어주었다. 
 - User테이블은 friend로  자기자신을 참조하도록 만들어주었다. 이로써 추가적인 테이블을 만들지 않고 populate로 해당 데이터들을 가져와 사용 할 수 있도록 만들었다.
 - message 테이블은 해당하는 roomID를 참조하여 메시지에 어떤 룸에 있는지 나타내주며 서로가 서로를 엮을 수 있도록 만들어주었다. 
+
+# Webpage 
+웹사이트를 가고 싶을 시 옆을 클릭해주세요->[둥카톡 웹페이지](https://doongtalk.herokuapp.com/)
+
+테스트 아이디 01 <br>
+ID: test01 <br>
+PASSWORD : 1234 <br>
+Email : test01@naver.com<br>
+
+테스트 아이디 02<br>
+ID : test02 <br>
+PASSWORD : 1234 <br>
+Email : test02@naver.com<br>
+
+Email은 유저를 찾을 때 사용됩니다. 
