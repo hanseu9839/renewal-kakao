@@ -3,7 +3,13 @@
 
 ### 진행기간 
 2022/03/27 ~ 2022/04/21
+
 <br>
+
+### 프로젝트 설명 
+- 이전에 youtube 클론 코딩을 하였는데 나만의 프로젝트를 진행하고 싶은 생각에 Socket.io를 사용하여 채팅방을 구현을 하였다. 
+- MongoDB, AWS S3, MonogoDB Atlas, Heroku App을 사용하여 배포하였습니다. 
+
 
 # 사용한 기술 스택 
 Front-End : PUG, SCSS <br>
