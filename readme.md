@@ -99,7 +99,7 @@ Tools : VS Code <br>
 - message 테이블은 해당하는 roomID를 참조하여 메시지에 어떤 룸에 있는지 나타내주며 서로가 서로를 엮을 수 있도록 만들어주었다. 
 
 # Webpage 
-웹사이트를 가고 싶을 시 옆을 클릭해주세요->[둥카톡 웹페이지](https://doongtalk.herokuapp.com/)
+웹사이트를 가고 싶을 시 옆을 클릭해주세요->[둥카톡 웹페이지](https://doongtalk.herokuapp.com/) / 현재 웹 사이트가 Heroku에서 일정시간이 지나 사라짐
 
 테스트 아이디 01 <br>
 ID: test01 <br>
